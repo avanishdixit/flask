@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+ {% block body %}
+  <!-- Page Header -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  <style>
+      .b1{
+          color: white;
+          background-color: blue;
+          border-color: blue;
+          font-family: 'Noto Sans JP', sans-serif;
+      }
+</style>
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home1.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{params['blog_name']}}</h1>
+            <span class="subheading"> </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+         {% for post in posts %}    
+          <div class="post-preview">
+            <a href="/post/{{post.slug}}">
+              <h2 class="post-title">{{ post.title }}
+
+              </h2>
+              <h3 class="post-subtitle">
+                {{post.tagline}}
+              </h3>
+            </a>
+            <p class="post-meta">Posted by
+              <a href="#">Admin</a>
+              on {{post.date}}</p>
+          </div>
+
+          {{post.content[0:143]}}...
+          <hr>
+</li></a>
+          {% endfor %}
+        <hr>
+         
+        <!-- Pager -->
+        <div class="clearfix">
+           
+            <button class="b1"> &larr; Previous Posts </button>
+            <button class="b1"> Older Posts &rarr;</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
